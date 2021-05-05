@@ -17,46 +17,33 @@ import java.util.concurrent.ThreadLocalRandom;
  * Get info from MySQL database -> generate html
  */
 @WebServlet(name = "storeProductServlet", value = "/")
-public class storeServlet extends HttpServlet
-{
-    public void init() throws ServletException
-    {
+public class storeServlet extends HttpServlet {
+    public void init() throws ServletException {
         super.init();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        PrintWriter writer = response.getWriter();
+        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
-        if(session.isNew())
-        {
+
+        if (session.isNew()) {
             String userId = String.valueOf(ThreadLocalRandom.current().nextInt());
             session.setAttribute("UserID", userId);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/greetingServlet");
-            requestDispatcher.include(request,response);
+            requestDispatcher.include(request, response);
         }
 
-        try
-        {
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/" + "pa2", "root", "root");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
-            writer.println("<html><body> " +
-                    "<ul>\n" +
-                   "<li>Product 1 <a href=\"./reportServlet?id=1\"> Report Product </a></li>\n" +
-                    "<li>Product 2 <a href=\"./reportServlet?id=2\"> Report Product </a></li>\n" +
-                    "<li>Product 3 <a href=\"./reportServlet?id=3\"> Report Product </a></li>\n" +
-                    "<li>Product 4 <a href=\"./reportServlet?id=4\"> Report Product </a></li>\n" +
-                    "<li>Product 5 <a href=\"./reportServlet?id=5\"> Report Product </a></li>\n" +
-                    "</ul>" + "</body> </html>");
 
 
-
-            initHtml(writer);
-            while (rs.next())
-            {
+            initHtml(out);
+            while (rs.next()) {
                 String n = rs.getString("phone_name");
                 String nm = rs.getString("phone_brand");
                 String nmo = rs.getString("phone_colors");
@@ -65,26 +52,25 @@ public class storeServlet extends HttpServlet
                 int c = rs.getInt("phone_rate_count");
                 String phone_d = rs.getString("phone_description");
 
-            /* This needs reworking to show up as store page used to appear */
-
-               writer.println("<tr><td>" + n + "</td><td>" + nm + "</td><td>" + nmo + "</td><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + phone_d + "</td></tr>");
+                /* This needs reworking to show up as store page used to appear */
+                out.println(n);
+                out.println(n);
+                out.println("<tr><td>" + n + "</td><td>" + nm + "</td><td>" + nmo + "</td><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + phone_d + "</td></tr>");
             }
-            writer.println("</body> </html>");
-        }
-        catch (ClassNotFoundException | SQLException e)
-        {
-            writer.println("inside catch");
+            out.println("</body> </html>");
+        } catch (ClassNotFoundException | SQLException e) {
+            out.println("inside catch");
             e.printStackTrace();
         }
     }
 
 
-
     /**
      * @param out: PrintWriter which used in doGet() to generate HTML.
-     * Generate title and the navigation Bar
+     *             Generate title and the navigation Bar
      */
-    private void initHtml(PrintWriter out){
+    private void initHtml(PrintWriter out)
+    {
         out.print("<!doctype html>\n" +
                 "\n" +
                 "<html lang=\"en\">\n" +
@@ -97,15 +83,23 @@ public class storeServlet extends HttpServlet
                 "  <link rel=\"stylesheet\" href=\"stylesheets/navbar_style.css\">\n" +
                 "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
                 "</head>\n");
+
         out.print("<body>\n" +
                 "    \n" +
                 "    <ul>\n" +
-             //   "        <li><a href=\"index.html\">Home</a></li>\n" +
-             //   "        <li><a class=\"active\" href=\"store.html\">Store</a></li>\n" +
-             //   "        <li><a href=\"about.html\">About</a></li>\n" +
+                "        <li><a href=\"index.html\">Home</a></li>\n" +
+                "        <li><a class=\"active\" href=\"store.html\">Store</a></li>\n" +
+                "        <li><a href=\"about.html\">About</a></li>\n" +
                 "    </ul>\n" +
                 "\n" +
                 "    <h2 style=\"text-align: center;\">Products</h2>\n");
 
     }
 }
+    //    "<ul>\n" +
+    //    "<li>Product 1 <a href=\"./reportServlet?id=1\"> Report Product </a></li>\n" +
+    //    "<li>Product 2 <a href=\"./reportServlet?id=2\"> Report Product </a></li>\n" +
+     //   "<li>Product 3 <a href=\"./reportServlet?id=3\"> Report Product </a></li>\n" +
+     //   "<li>Product 4 <a href=\"./reportServlet?id=4\"> Report Product </a></li>\n" +
+     //   "<li>Product 5 <a href=\"./reportServlet?id=5\"> Report Product </a></li>\n" +
+     //   "</ul>\n"
