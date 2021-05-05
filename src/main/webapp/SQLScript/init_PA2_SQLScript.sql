@@ -1,4 +1,4 @@
-use pa2;
+
 # Make sure you are connect to the db and have a schema named 'pa2'
 create table if not exists phone_information (
 	phone_name varchar(100) NOT NULL,
