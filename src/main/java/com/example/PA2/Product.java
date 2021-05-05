@@ -12,14 +12,16 @@ public class Product {
     private float price;
     private int rating;
     private int ratingCount;
+    private String imagePath;
 
-    public Product(String name, String brand, String colors, float price, int rating, int ratingCount){
+    public Product(String name, String brand, String colors, float price, int rating, int ratingCount, String imagePath){
         this.name = name;
         this.brand = brand;
         this.colors = colors;
         this.price = price;
         this.rating = rating;
         this.ratingCount = ratingCount;
+        this.imagePath = imagePath;
     }
 
     public String getName(){
@@ -45,6 +47,8 @@ public class Product {
     public int getRatingCount(){
         return ratingCount;
     }
+
+    public String getImagePath(){ return imagePath;}
 
     public String toString(){
         return name;

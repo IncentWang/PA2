@@ -1,4 +1,4 @@
-
+using pa2
 # Make sure you are connect to the db and have a schema named 'pa2'
 create table if not exists phone_information (
 	phone_name varchar(100) NOT NULL,
@@ -25,6 +25,6 @@ values('Galaxy 5G', 'Samsung', 'red, blue, white, black', 999.99, 'Samsung Phone
       ('Galaxy S', 'Samsung', 'red, blue, white, black', 399.99, 'Samsung Phone'),
       ('Galaxy Z Flip', 'Samsung', 'red, blue, white, black', 199.99, 'Samsung Phone');
 
-
+select * from phone_information;
 
 #drop table phone_information;

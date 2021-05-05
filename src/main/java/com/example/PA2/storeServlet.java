@@ -58,8 +58,8 @@ public class storeServlet extends HttpServlet {
                 int b = rs.getInt("phone_rating");
                 int c = rs.getInt("phone_rate_count");
                 String phone_d = rs.getString("phone_description");
-
-                products.add(new Product(n,nm,nmo,a,b,c));
+                String path = rs.getString("image_path");
+                products.add(new Product(n,nm,nmo,a,b,c,path));
                 /* This needs reworking to show up as store page used to appear */
             }
             String html = generateHtml(products.subList(0, products.size()/2));
@@ -82,10 +82,13 @@ public class storeServlet extends HttpServlet {
      * @return : the HTML which will generate the table.
      */
     private String generateHtml(List<Product> ps){
-        String html = "<table>\n";
+        String html = "<table style=\"width:100%\">\n";
         html += "<tr>";
         for (Product p : ps){
-            html += "<td>" + "Slot For Image" + "</td>\n";
+            System.out.println(p.getImagePath());
+            html += "<td>" + "<img class = \"product_image\" src=" + p.getImagePath() + " alt=\"Photo of phone\"" + "width=100px height=auto" +"/>" + "</td>\n";
+            // System.out.println(getServletContext().getRealPath("/"));
+            // Using this line to find the path of the web app then add "image\"FileName"" behind it to use
         }
         html += "</tr>\n";
         html += "<tr>";
