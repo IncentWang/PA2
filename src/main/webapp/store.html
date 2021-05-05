@@ -1,0 +1,188 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="stylesheets/store_style.css">
+  <link rel="stylesheet" href="stylesheets/navbar_style.css">
+  <script type="text/javascript" src="js/product_info.js"></script>
+</head>
+
+
+
+
+
+<body>
+    
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="store.html">Store</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+
+    <h2 style="text-align: center;">Products</h2>
+    
+    <script>loadProduct();</script>
+   
+      
+
+    <table style="width:100%">
+        <tr>
+            <td><img class="product_image" onclick="create('iphone 12', 'Apple', '999.99', '3')" src="images/iPhone%2012.jpg" alt="Photo of an iPhone 12"/></td>
+            <td><img class="product_image" onclick="create('iphone 11', 'Apple', '799.99', '3')" src="images/iPhone%2011.jpg" alt="Photo of an iPhone 11"/></td>
+            <td><img class="product_image" onclick="create('iphone 10', 'Apple', '599.99', '3')" src="images/iPhone%2010.jpg" alt="Photo of an iPhone 10"/></td>
+            <td><img class="product_image" onclick="create('iphone 8', 'Apple', '399.99', '3')" src="images/iPhone%208.jpg" alt="Photo of an iPhone 8"/></td>
+            <td><img class="product_image" onclick="create('iphone 7', 'Apple', '199.99', '3')" src="images/iPhone%207.jpg" alt="Photo of an iPhone 7"/></td>
+        </tr>
+        <tr>
+            <td>iPhone 12 32GB</td>
+            <td>iPhone 11 32GB</td>
+            <td>iPhone 10 32GB</td>
+            <td>iPhone 8 32GB</td>
+            <td>iPhone 7 32GB</td>
+        </tr>
+        <tr>
+            <td>Apple</td>
+            <td>Apple</td>
+            <td>Apple</td>
+            <td>Apple</td>
+            <td>Apple</td>
+        </tr>
+        <tr>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+        </tr>
+        <tr>
+            <td>$ 999.99</td>
+            <td>$ 799.99</td>
+            <td>$ 599.99</td>
+            <td>$ 399.99</td>
+            <td>$ 199.99</td>
+        </tr>
+        <tr>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+
+    <table style="width:100%">
+        <tr>
+            <td><img class="product_image" onclick="create('Galaxy 5G', 'Samsung', '999.99', '3')" src="images/Samsung%20Galaxy%205G.jpg" alt="Photo of a samsung galaxy 5G"/></td>
+            <td><img class="product_image" onclick="create('Galaxy Fold', 'Samsung', '799.99', '3')" src="images/Samsung%20Galaxy%20Fold.jpg" alt="Photo of a samsung galaxy fold "/></td>
+            <td><img class="product_image" onclick="create('Galaxy Note', 'Samsung', '599.99', '3')" src="images/Samsung%20Galaxy%20Note.jpg" alt="Photo of a samsung galaxy note"/></td>
+            <td><img class="product_image" onclick="create('Galaxy S', 'Samsung', '399.99', '3')" src="images/Samsung%20Galaxy%20S.jpg" alt="Photo of a samsung galaxy S"/></td>
+            <td><img class="product_image" onclick="create('Galaxy Z Flip', 'Samsung', '199.99', '3')" src="images/Samsung%20Galaxy%20Z%20Flip.jpg" alt="Photo of a samsung galaxy z flip"/></td>
+        </tr>
+        <tr>
+            <td>Galaxy 5G 32GB</td>
+            <td>Galaxy Fold 32GB</td>
+            <td>Galaxy Note 32GB</td>
+            <td>Galaxy S 32GB</td>
+            <td>Galaxy Z Flip 32GB</td>
+        </tr>
+        <tr>
+            <td>Samsung</td>
+            <td>Samsung</td>
+            <td>Samsung</td>
+            <td>Samsung</td>
+            <td>Samsung</td>
+        </tr>
+        <tr>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+            <td>red, blue, white, black</td>
+        </tr>
+        <tr>
+            <!-- MUST be this form ($ number)(WITH A WHITESPACE) to make sure js script work well -->
+            <td>$ 999.99</td>
+            <td>$ 799.99</td>
+            <td>$ 599.99</td>
+            <td>$ 399.99</td>
+            <td>$ 199.99</td>
+        </tr>
+        <tr>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+            <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </td>
+        </tr>
+    </table>
+
+
+    
+
+</body>
+</html>
