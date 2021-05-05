@@ -12,18 +12,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class greetingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
+      // response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
         String userId = (String) session.getAttribute("UserID");
 
-        out.println("<h1> Hello " + userId);
-
-
-
-
-
+       // out.println("<h1> Hello " + userId);
     }
 
     @Override
