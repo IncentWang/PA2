@@ -36,7 +36,7 @@ public class storeServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/" + "pa2", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
@@ -53,17 +53,29 @@ public class storeServlet extends HttpServlet {
                 String phone_d = rs.getString("phone_description");
 
                 /* This needs reworking to show up as store page used to appear */
-                out.println(n);
-                out.println(n);
-                out.println("<tr><td>" + n + "</td><td>" + nm + "</td><td>" + nmo + "</td><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + phone_d + "</td></tr>");
+                out.print("<table><tr><td>" + n + "</td><td>" + nm + "</td><td>" + nmo + "</td><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + phone_d + "</td></tr></table>\n");
             }
-            out.println("</body> </html>");
+            out.print("</body> </html>\n");
         } catch (ClassNotFoundException | SQLException e) {
             out.println("inside catch");
             e.printStackTrace();
         }
     }
 
+    /**
+     *
+     * @param n : name of the phone
+     * @param nm : name of the phone brand
+     * @param nmo : name of the colors
+     * @param a : the price of the phone
+     * @param b : the rating of this model
+     * @param c : the total number of rating
+     * @return : the HTML of the table
+     */
+    private String generateTable(String n, String nm, String nmo, double a, int b, int c)
+    {
+        return "";
+    }
 
     /**
      * @param out: PrintWriter which used in doGet() to generate HTML.
