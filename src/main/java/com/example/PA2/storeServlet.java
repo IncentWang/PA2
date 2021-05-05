@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -18,6 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @WebServlet(name = "storeProductServlet", value = "/")
 public class storeServlet extends HttpServlet {
+    ArrayList<Product> products = new ArrayList<>();
     public void init() throws ServletException {
         super.init();
     }
@@ -25,7 +28,10 @@ public class storeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
+        products = new ArrayList<>();
         HttpSession session = request.getSession(true);
+
+        int count = 0;
 
         if (session.isNew()) {
             String userId = String.valueOf(ThreadLocalRandom.current().nextInt());
@@ -36,7 +42,7 @@ public class storeServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:// localhost:3306/" + "pa2", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
@@ -44,26 +50,71 @@ public class storeServlet extends HttpServlet {
 
             initHtml(out);
             while (rs.next()) {
+                count++;
                 String n = rs.getString("phone_name");
                 String nm = rs.getString("phone_brand");
                 String nmo = rs.getString("phone_colors");
-                double a = rs.getDouble("phone_price");
+                float a = rs.getFloat("phone_price");
                 int b = rs.getInt("phone_rating");
                 int c = rs.getInt("phone_rate_count");
                 String phone_d = rs.getString("phone_description");
 
+                products.add(new Product(n,nm,nmo,a,b,c));
                 /* This needs reworking to show up as store page used to appear */
-                out.println(n);
-                out.println(n);
-                out.println("<tr><td>" + n + "</td><td>" + nm + "</td><td>" + nmo + "</td><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + phone_d + "</td></tr>");
             }
-            out.println("</body> </html>");
+            String html = generateHtml(products.subList(0, products.size()/2));
+            html += generateHtml(products.subList(products.size()/2, products.size()));
+            out.print(html);
+            out.flush();
+            out.print("</body> </html>\n");
         } catch (ClassNotFoundException | SQLException e) {
             out.println("inside catch");
             e.printStackTrace();
         }
+        finally {
+            out.close();
+        }
     }
 
+    /**
+     *
+     * @param ps : The ArrayList which contains the information of all ps.
+     * @return : the HTML which will generate the table.
+     */
+    private String generateHtml(List<Product> ps){
+        String html = "<table>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + "Slot For Image" + "</td>\n";
+        }
+        html += "</tr>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + p.getName() + "</td>\n";
+        }
+        html += "</tr>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + p.getBrand() + "</td>\n";
+        }
+        html += "</tr>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + p.getColors() + "</td>\n";
+        }
+        html += "</tr>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + p.getPrice() + "</td>\n";
+        }
+        html += "</tr>\n";
+        html += "<tr>";
+        for (Product p : ps){
+            html += "<td>" + "Slot for Rating" + "</td>\n";
+        }
+        html += "</tr></table>\n";
+        return html;
+    }
 
     /**
      * @param out: PrintWriter which used in doGet() to generate HTML.
