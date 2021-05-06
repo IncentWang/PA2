@@ -47,10 +47,8 @@ public class storeServlet extends HttpServlet {
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
 
-
             initHtml(out);
             while (rs.next()) {
-                count++;
                 String n = rs.getString("phone_name");
                 String nm = rs.getString("phone_brand");
                 String nmo = rs.getString("phone_colors");
@@ -60,7 +58,8 @@ public class storeServlet extends HttpServlet {
                 String phone_d = rs.getString("phone_description");
                 String path = rs.getString("image_path");
                 products.add(new Product(n,nm,nmo,a,b,c,path));
-                /* This needs reworking to show up as store page used to appear */
+                /* This needs reworking to show up as store page used to appear
+                *   @Done */
             }
             String html = generateHtml(products.subList(0, products.size()/2));
             html += generateHtml(products.subList(products.size()/2, products.size()));
@@ -85,8 +84,7 @@ public class storeServlet extends HttpServlet {
         String html = "<table style=\"width:100%\">\n";
         html += "<tr>";
         for (Product p : ps){
-            System.out.println(p.getImagePath());
-            html += "<td>" + "<img class = \"product_image\" src=" + p.getImagePath() + " alt=\"Photo of phone\"" + "width=100px height=auto" +"/>" + "</td>\n";
+            html += "<td>" + "<img class = \"product_image\"" + " onclick= \"document.location='./productServlet?model=" + p.getName() + "'\"" + "src=" + p.getImagePath() + " alt=\"Photo of phone\"" + "width=100px height=auto" +"/>" + "</td>\n";
             // System.out.println(getServletContext().getRealPath("/"));
             // Using this line to find the path of the web app then add "image\"FileName"" behind it to use
         }
