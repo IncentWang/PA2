@@ -31,3 +31,14 @@ SELECT * FROM pa2.phone_information;
 
 use pa2;
 drop table phone_information;
+
+create table if not exists orders(
+	order_id int auto_increment,
+    product_name varchar(100) NOT NULL,
+    orderer_name varchar(100) NOT NULL,
+    total_price float NOT NULL,
+    primary key(order_id),
+    foreign key(product_name) references phone_information(phone_name)
+);
+
+SELECT * FROM orders;

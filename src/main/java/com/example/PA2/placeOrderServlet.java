@@ -5,10 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @WebServlet(name = "placeOrderServlet", value = "/placeOrderServlet")
 public class placeOrderServlet extends HttpServlet {
@@ -22,11 +19,20 @@ public class placeOrderServlet extends HttpServlet {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent"); // TODO: Change it before deploying to the remote server.
-            Statement statement = con.createStatement();
+            PreparedStatement statement = con.prepareStatement("INSERT INTO orders(product_name, orderer_name, total_price) VALUES(?,?,?)");
+            statement.setString(1, request.getParameter("productNames"));
+            statement.setString(2, request.getParameter("fname") + request.getParameter("lname"));
+            statement.setFloat(3, Float.parseFloat(request.getParameter("price")));
+            System.out.println(statement.toString());
+            statement.execute();
+
 
         }catch(SQLException | ClassNotFoundException e)
         {
             System.out.println("inside Catch");
+        }finally{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            dispatcher.forward(request, response);
         }
     }
 }

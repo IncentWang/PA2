@@ -15,15 +15,18 @@ import java.util.Map;
  */
 @WebServlet(name = "cartPageServlet", value = "/cartPageServlet")
 public class cartPageServlet extends HttpServlet {
+    float total;
+    String productNames = "";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Map<Product, Integer> products = getCartInfo(session);
-        generateCart(products, response);
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Map<Product, Integer> products = getCartInfo(session);
+        generateCart(products, response);
     }
 
     private Map<Product, Integer> getCartInfo(HttpSession session){
@@ -70,11 +73,12 @@ public class cartPageServlet extends HttpServlet {
         try{
             PrintWriter out = response.getWriter();
             initCart(out);
-            float total = 0.0f;
+            total = 0.0f;
             for(Product key : products.keySet())
             {
                 int qty = products.get(key);
                 total += key.getPrice();
+                productNames += " " + key.getName() + " ";
                 out.print("<tr><td>Name: " + key.getName() +" Price: "+ qty*key.getPrice() + "</td></tr>\n");
             }
             out.println("<br>");
@@ -175,6 +179,8 @@ public class cartPageServlet extends HttpServlet {
                 "\n" +
                 "          <label for=\"cvv\">CVV:</label><br>\n" +
                 "          <input type=\"text\" id=\"cvv\" name=\"cvv\" value=\"\" pattern=\"[0-9]{3}\"><br>\n" +
+                "          <input type=\"hidden\" id=\"productNames\" value=\"" + productNames.trim() + "\" name=\"productNames\"><br>\n" +
+                "          <input type=\"hidden\" id=\"price\" value=\"" + total + "\" name=\"price\"><br>\n" +
                 "\n" +
                 "        \n" +
                 "\n" +
