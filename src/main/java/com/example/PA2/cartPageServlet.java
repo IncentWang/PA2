@@ -70,8 +70,9 @@ public class cartPageServlet extends HttpServlet {
     }
 
     private void generateCart(Map<Product, Integer> products, HttpServletResponse response) throws IOException{
+        PrintWriter out = response.getWriter();
         try{
-            PrintWriter out = response.getWriter();
+
             initCart(out);
             total = 0.0f;
             for(Product key : products.keySet())
@@ -89,17 +90,32 @@ public class cartPageServlet extends HttpServlet {
                     "</body>\n" +
                     "</html>\n");
             initForm(out);
-        }catch(Exception e){}
+        }catch(Exception e){
+            out.println("inside catch");
+            e.printStackTrace();
+        }
 
     }
 
     private void initCart(PrintWriter out)
     {
-        out.print("<!DOCTYPE html>\n" +
+        out.print("<!doctype html>\n" +
+                "\n" +
+                "\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Cart</title>\n" +
+                "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                "\n" +
+                "  <title>Cart Page</title>\n" +
+                "  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n" +
+                "  <link rel=\"stylesheet\" href=\"stylesheets/store_style.css\">\n" +
+                "  <link rel=\"stylesheet\" href=\"stylesheets/navbar_style.css\">\n" +
+                "  <link rel=\"stylesheet\" href=\"stylesheets/product_description_style.css\">\n" +
+                "\n" +
+                "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
+                "  <script type=\"text/javascript\" src=\"js/form_validation.js\"></script>\n" +
+                "\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "<ul>\n" +
