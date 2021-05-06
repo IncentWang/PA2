@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @WebServlet(name = "greetingServlet", value = "/greetingServlet")
 public class greetingServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
       // response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
@@ -22,7 +22,7 @@ public class greetingServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     }
 }

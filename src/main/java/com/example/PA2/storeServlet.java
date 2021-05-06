@@ -26,7 +26,12 @@ public class storeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        doPost(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
         products = new ArrayList<>();
         HttpSession session = request.getSession(true);
