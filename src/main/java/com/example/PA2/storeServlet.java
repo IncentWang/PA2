@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Purpose for this class: generate product page (store.html) dynamically.
  * Get info from MySQL database -> generate html
  */
-@WebServlet(name = "storeProductServlet", value = "/")
+@WebServlet(name = "storeProductServlet", value = "")
 public class storeServlet extends HttpServlet {
 
     ArrayList<Product> products = new ArrayList<>();
