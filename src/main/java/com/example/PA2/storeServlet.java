@@ -20,8 +20,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @WebServlet(name = "storeProductServlet", value = "/")
 public class storeServlet extends HttpServlet {
+
     ArrayList<Product> products = new ArrayList<>();
-    public void init() throws ServletException {
+
+    public void init() throws ServletException
+    {
         super.init();
     }
 
@@ -33,6 +36,7 @@ public class storeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
+        out.print(initHtml());
         products = new ArrayList<>();
         HttpSession session = request.getSession(true);
 
@@ -47,12 +51,12 @@ public class storeServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
 
-            initHtml(out);
+
             while (rs.next()) {
                 String n = rs.getString("phone_name");
                 String nm = rs.getString("phone_brand");
@@ -122,41 +126,31 @@ public class storeServlet extends HttpServlet {
         return html;
     }
 
-    /**
-     * @param out: PrintWriter which used in doGet() to generate HTML.
-     *             Generate title and the navigation Bar
-     */
-    private void initHtml(PrintWriter out)
+
+    private String initHtml()
     {
-        out.print("<!doctype html>\n" +
+        return "<!doctype html>\n" +
+                "\n" +
                 "\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
                 "\n" +
-                "  <title>Store</title>\n" +
+                "  <title>Home Page</title>\n" +
                 "  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n" +
                 "  <link rel=\"stylesheet\" href=\"stylesheets/store_style.css\">\n" +
                 "  <link rel=\"stylesheet\" href=\"stylesheets/navbar_style.css\">\n" +
-                "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
-                "</head>\n");
-
-        out.print("<body>\n" +
-                "    \n" +
-                "    <ul>\n" +
-                "        <li><a href=\"index.html\">Home</a></li>\n" +
-                "        <li><a class=\"active\" href=\"store.html\">Store</a></li>\n" +
-                "        <li><a href=\"about.html\">About</a></li>\n" +
-                "    </ul>\n" +
+                "  <link rel=\"stylesheet\" href=\"stylesheets/product_description_style.css\">\n" +
                 "\n" +
-                "    <h2 style=\"text-align: center;\">Products</h2>\n");
-
+                "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
+                "  <script type=\"text/javascript\" src=\"js/form_validation.js\"></script>\n" +
+                "\n" +
+                "</head>\n" +
+                "<body>" +
+                "<ul>\n" +
+                "        <li><a class=\"active\" href=\"./\">Home</a></li>\n" +
+                "        <li><a href=\"./aboutServlet\">About</a></li>\n" +
+                "</ul>\n";
     }
 }
-    //    "<ul>\n" +
-    //    "<li>Product 1 <a href=\"./reportServlet?id=1\"> Report Product </a></li>\n" +
-    //    "<li>Product 2 <a href=\"./reportServlet?id=2\"> Report Product </a></li>\n" +
-     //   "<li>Product 3 <a href=\"./reportServlet?id=3\"> Report Product </a></li>\n" +
-     //   "<li>Product 4 <a href=\"./reportServlet?id=4\"> Report Product </a></li>\n" +
-     //   "<li>Product 5 <a href=\"./reportServlet?id=5\"> Report Product </a></li>\n" +
-     //   "</ul>\n"

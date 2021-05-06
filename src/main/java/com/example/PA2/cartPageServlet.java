@@ -36,7 +36,7 @@ public class cartPageServlet extends HttpServlet {
         ResultSet rs;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
             Statement statement = con.createStatement();
             for(String name: productNames){
                 sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + name + "'";
@@ -93,7 +93,8 @@ public class cartPageServlet extends HttpServlet {
 
     }
 
-    private void initCart(PrintWriter out){
+    private void initCart(PrintWriter out)
+    {
         out.print("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
@@ -101,6 +102,10 @@ public class cartPageServlet extends HttpServlet {
                 "    <title>Cart</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
+                "<ul>\n" +
+                "<li><a class=\"active\" href=\"./\">Home</a></li>\n" +
+                "<li><a href=\"./aboutServlet\">About</a></li>\n" +
+                "</ul>\n" +
                 "<div class=\"left-column\">\n" +
                 "  <h2>Order Summary</h2>\n" +
                 "  <table>\n");
