@@ -51,7 +51,7 @@ public class storeServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information";
             ResultSet rs = statement.executeQuery(sql);
@@ -73,6 +73,9 @@ public class storeServlet extends HttpServlet {
             String html = generateHtml(products.subList(0, products.size()/2));
             html += generateHtml(products.subList(products.size()/2, products.size()));
             out.print(html);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ratingServlet");
+            requestDispatcher.include(request, response);
+
             out.flush();
             out.print("</body> </html>\n");
         } catch (ClassNotFoundException | SQLException e) {

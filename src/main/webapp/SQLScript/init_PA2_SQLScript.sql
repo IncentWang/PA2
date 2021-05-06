@@ -37,8 +37,8 @@ create table if not exists orders(
     product_name varchar(100) NOT NULL,
     orderer_name varchar(100) NOT NULL,
     total_price float NOT NULL,
-    primary key(order_id),
-    foreign key(product_name) references phone_information(phone_name)
+    primary key(order_id)
 );
 
 SELECT * FROM orders;
+drop table orders;

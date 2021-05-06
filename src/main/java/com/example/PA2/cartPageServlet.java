@@ -36,7 +36,7 @@ public class cartPageServlet extends HttpServlet {
         ResultSet rs;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
             Statement statement = con.createStatement();
             for(String name: productNames){
                 sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + name + "'";
@@ -79,7 +79,7 @@ public class cartPageServlet extends HttpServlet {
             {
                 int qty = products.get(key);
                 total += key.getPrice();
-                productNames += " " + key.getName() + " ";
+                productNames += " " + key.getName().replace(' ', '_') + " ";
                 out.print("<tr><td>Name: " + key.getName() +" Price: "+ qty*key.getPrice() + "</td></tr>\n");
             }
             out.println("<br>");

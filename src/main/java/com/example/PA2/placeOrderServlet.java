@@ -18,7 +18,7 @@ public class placeOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root"); // TODO: Change it before deploying to the remote server.
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent"); // TODO: Change it before deploying to the remote server.
             PreparedStatement statement = con.prepareStatement("INSERT INTO pa2.orders (product_name, orderer_name, total_price) VALUES (?,?,?)");
             Statement initedStatement = con.createStatement();
             statement.setString(1, request.getParameter("productNames"));
