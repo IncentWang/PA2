@@ -77,8 +77,9 @@ public class ratingServlet extends HttpServlet {
         for (Product p : ps){
             html += "<td>" + "<img class = \"product_image\"" + " onclick= \"document.location='./productServlet?model=" + p.getName() + "'\"" + "src=" + p.getImagePath() + " alt=\"Photo of phone\"" + "width=100px height=auto" +"/>" + "</td>\n";
         }
+        html += "</tr><tr>";
         for (Product p : ps){
-            html += "<div class=\"rate\">\n" +
+            html += "<td><div class=\"rate\">\n" +
                     "    <input type=\"radio\" id=\"star5\" name=\"rate" + i + "\" value=\"5\" />\n" +
                     "    <label for=\"star5\" title=\"text\">5 stars</label>\n" +
                     "    <input type=\"radio\" id=\"star4\" name=\"rate" + i + "\" value=\"4\" />\n" +
@@ -89,7 +90,7 @@ public class ratingServlet extends HttpServlet {
                     "    <label for=\"star2\" title=\"text\">2 stars</label>\n" +
                     "    <input type=\"radio\" id=\"star1\" name=\"rate" + i + "\" value=\"1\" />\n" +
                     "    <label for=\"star1\" title=\"text\">1 star</label>\n" +
-                    "  </div>";
+                    "  </div></td>";
             i++;
         }
         html += "</tr></table>\n";
