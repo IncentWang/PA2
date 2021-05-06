@@ -30,7 +30,6 @@ public class productServlet extends HttpServlet {
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + name + "'";
 
-            System.out.println(sql);
 
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()) {
