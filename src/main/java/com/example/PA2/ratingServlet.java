@@ -73,22 +73,24 @@ public class ratingServlet extends HttpServlet {
     {
         String html = "<table style=\"width:100%\">\n";
         html += "<tr>";
+        int i = 1;
         for (Product p : ps){
             html += "<td>" + "<img class = \"product_image\"" + " onclick= \"document.location='./productServlet?model=" + p.getName() + "'\"" + "src=" + p.getImagePath() + " alt=\"Photo of phone\"" + "width=100px height=auto" +"/>" + "</td>\n";
         }
         for (Product p : ps){
             html += "<div class=\"rate\">\n" +
-                    "    <input type=\"radio\" id=\"star5\" name=\"rate\" value=\"5\" />\n" +
+                    "    <input type=\"radio\" id=\"star5\" name=\"rate" + i + "\" value=\"5\" />\n" +
                     "    <label for=\"star5\" title=\"text\">5 stars</label>\n" +
-                    "    <input type=\"radio\" id=\"star4\" name=\"rate\" value=\"4\" />\n" +
+                    "    <input type=\"radio\" id=\"star4\" name=\"rate" + i + "\" value=\"4\" />\n" +
                     "    <label for=\"star4\" title=\"text\">4 stars</label>\n" +
-                    "    <input type=\"radio\" id=\"star3\" name=\"rate\" value=\"3\" />\n" +
+                    "    <input type=\"radio\" id=\"star3\" name=\"rate" + i + "\" value=\"3\" />\n" +
                     "    <label for=\"star3\" title=\"text\">3 stars</label>\n" +
-                    "    <input type=\"radio\" id=\"star2\" name=\"rate\" value=\"2\" />\n" +
+                    "    <input type=\"radio\" id=\"star2\" name=\"rate" + i + "\" value=\"2\" />\n" +
                     "    <label for=\"star2\" title=\"text\">2 stars</label>\n" +
-                    "    <input type=\"radio\" id=\"star1\" name=\"rate\" value=\"1\" />\n" +
+                    "    <input type=\"radio\" id=\"star1\" name=\"rate" + i + "\" value=\"1\" />\n" +
                     "    <label for=\"star1\" title=\"text\">1 star</label>\n" +
                     "  </div>";
+            i++;
         }
         html += "</tr></table>\n";
         return html;
