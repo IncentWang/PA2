@@ -13,8 +13,8 @@ import java.sql.*;
 public class generateProductServlet extends HttpServlet{
 
     final String DATABASE_ADDRESS = "localhost:3306"; // TODO: Change it before deployment
-    final String DATABASE_USERNAME = "incent"; // TODO: Change it before deployment
-    final String DATABASE_PASSWORD = "incent"; // TODO: Change it before deployment
+    final String DATABASE_USERNAME = "root"; // TODO: Change it before deployment
+    final String DATABASE_PASSWORD = "root"; // TODO: Change it before deployment
     final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
 
@@ -30,7 +30,9 @@ public class generateProductServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         PrintWriter out = response.getWriter();
-        initHtml(out);
+        out.print(initHtml());
+
+
         try(Connection connection = DriverManager.getConnection(JDBC_DRIVER, DATABASE_USERNAME, DATABASE_PASSWORD)){
             try(Statement statement = connection.createStatement()){
                 try(ResultSet resultSet = statement.executeQuery("SELECT * FROM pa2.phone_information")){ // TODO: Change the name of table before deployment
@@ -55,32 +57,30 @@ public class generateProductServlet extends HttpServlet{
         }
     }
 
-    /**
-     * @param out: PrintWriter which used in doGet() to generate HTML.
-     * Generate title and the navigation Bar
-     */
-    private void initHtml(PrintWriter out){
-        out.print("<!doctype html>\n" +
+    private String initHtml()
+    {
+        return "<!doctype html>\n" +
+                "\n" +
                 "\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
                 "\n" +
-                "  <title>Store</title>\n" +
+                "  <title>Product Page</title>\n" +
                 "  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n" +
                 "  <link rel=\"stylesheet\" href=\"stylesheets/store_style.css\">\n" +
                 "  <link rel=\"stylesheet\" href=\"stylesheets/navbar_style.css\">\n" +
-                "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
-                "</head>\n");
-        out.print("<body>\n" +
-                "    \n" +
-                "    <ul>\n" +
-                "        <li><a href=\"index.html\">Home</a></li>\n" +
-                "        <li><a class=\"active\" href=\"store.html\">Store</a></li>\n" +
-                "        <li><a href=\"about.html\">About</a></li>\n" +
-                "    </ul>\n" +
+                "  <link rel=\"stylesheet\" href=\"stylesheets/product_description_style.css\">\n" +
                 "\n" +
-                "    <h2 style=\"text-align: center;\">Products</h2>\n");
-
+                "  <script type=\"text/javascript\" src=\"js/product_info.js\"></script>\n" +
+                "  <script type=\"text/javascript\" src=\"js/form_validation.js\"></script>\n" +
+                "\n" +
+                "</head>\n" +
+                "<body>" +
+                "<ul>\n" +
+                "        <li><a class=\"active\" href=\"./\">Home</a></li>\n" +
+                "        <li><a href=\"./aboutServlet\">About</a></li>\n" +
+                "</ul>\n";
     }
 }
