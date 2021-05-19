@@ -23,7 +23,7 @@ public class cartServlet extends HttpServlet {
         else{
             session.setAttribute(model, Integer.valueOf(session.getAttribute(model).toString()) + 1);
         }
-        response.getWriter().print("<head>Successful Add to Cart!</head>\n" + "<button onclick=\"document.location='./JSPs/store.jsp'\">Continue Shopping</button>" + "<button onclick=\"document.location='./JSPs/cartpage.jsp'\">Go To Shopping Cart</button>");
+        response.getWriter().print("<head>Successful Add to Cart!</head>\n" + "<button onclick=\"document.location='./store.jsp'\">Continue Shopping</button>" + "<button onclick=\"document.location='./cartpage.jsp'\">Go To Shopping Cart</button>");
     }
 
     @Override
