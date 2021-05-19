@@ -1,5 +1,5 @@
 package com.example.PA2;
-
+// No need to convert to JSP
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -32,8 +32,7 @@ public class placeOrderServlet extends HttpServlet {
         {
             System.out.println(e.getMessage());
         }finally{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
-            dispatcher.forward(request, response);
+            response.getWriter().print("<head>Place your order successfully!</head>\n" + "<button onclick=\"document.location='./JSPs/store.jsp'\">Continue shop</button>");
         }
     }
 }

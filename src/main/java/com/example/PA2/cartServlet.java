@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 /**
  * This Servlet is used to get the parameter from productServlet and put the data into a session attribute to log the things in the cart.
  * NOTE: This servlet will not generate a cart page.
+ * No Need to Convert to JSP
  */
 @WebServlet(name = "cartServlet", value = "/cartServlet")
 public class cartServlet extends HttpServlet {
@@ -22,7 +23,7 @@ public class cartServlet extends HttpServlet {
         else{
             session.setAttribute(model, Integer.valueOf(session.getAttribute(model).toString()) + 1);
         }
-        response.getWriter().print("<head>Successful Add to Cart!</head>\n" + "<button onclick=\"document.location='./'\">Continue Shopping</button>" + "<button onclick=\"document.location='./cartPageServlet'\">Go To Shopping Cart</button>");
+        response.getWriter().print("<head>Successful Add to Cart!</head>\n" + "<button onclick=\"document.location='./JSPs/store.jsp'\">Continue Shopping</button>" + "<button onclick=\"document.location='./JSPs/cartpage.jsp'\">Go To Shopping Cart</button>");
     }
 
     @Override

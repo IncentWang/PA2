@@ -3,7 +3,7 @@ package com.example.PA2;
 /**
  * This class is aiming to store the info of the products.
  * Like the name of the product, the price of the product, etc..
- *
+ * No Need to Convert to JSP
  */
 public class Product {
     private String name;

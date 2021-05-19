@@ -7,7 +7,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.ThreadLocalRandom;
-
+// No Need to convert to JSP
 @WebServlet(name = "greetingServlet", value = "/greetingServlet")
 public class greetingServlet extends HttpServlet {
     @Override

@@ -36,7 +36,6 @@ public class ratingServlet extends HttpServlet {
             {
                 Statement statement1 = con.createStatement();
                 String sql1 = "SELECT * FROM pa2.phone_information where phone_name=" + "'" + products.get(i) + "'";
-                System.out.println(sql1);
                 ResultSet rs1 = statement1.executeQuery(sql1);
                 while(rs1.next()){
                     ps.add(new Product(rs1.getString("phone_name"), rs1.getString("phone_brand"),

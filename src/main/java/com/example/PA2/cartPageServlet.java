@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * This Class will be used to generate a cart page.
+ * Convert to JSP DONE
  */
 @WebServlet(name = "cartPageServlet", value = "/cartPageServlet")
 public class cartPageServlet extends HttpServlet {

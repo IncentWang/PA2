@@ -80,16 +80,16 @@ function validateForm(){
 
 function sendEmail(color, quantity, fName, lName, address, city, state, zip, phone, card, shipping){
     console.log("send email");
-    var body = "Color: " + color + '\r\n' + 
-                "Quantity: " + quantity + '\r\n' + 
-                "First Name: " + fName + '\r\n' + 
-                "Last Name: " + lName + '\r\n' + 
-                "Address: " + address + '\r\n' + 
-                "City: " + city + '\r\n' + 
-                "State: " + state + '\r\n' + 
-                "Zip: " + zip + '\r\n' + 
+    var body = "Color: " + color + '\r\n' +
+                "Quantity: " + quantity + '\r\n' +
+                "First Name: " + fName + '\r\n' +
+                "Last Name: " + lName + '\r\n' +
+                "Address: " + address + '\r\n' +
+                "City: " + city + '\r\n' +
+                "State: " + state + '\r\n' +
+                "Zip: " + zip + '\r\n' +
                 "Phone: " + phone + '\r\n' +
-                "Card: " + card + '\r\n' + 
+                "Card: " + card + '\r\n' +
                 "Shipping: " + shipping;
 
     body = encodeURIComponent(body);
