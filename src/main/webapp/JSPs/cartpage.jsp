@@ -72,7 +72,7 @@
     </head>
     <body>
 <ul>
-    <li><a class="active" href="./">Home</a></li>
+    <li><a class="active" href="./store.jsp">Home</a></li>
     <li><a href="./aboutServlet">About</a></li>
     </ul>
 <div class="left-column">
