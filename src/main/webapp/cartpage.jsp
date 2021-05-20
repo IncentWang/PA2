@@ -98,7 +98,7 @@
 </div>
 <div class="right-column">
     <h2>Order Form</h2>
-    <form name="orderForm" action="./placeOrderServlet" method="get">
+    <form name="orderForm" action="placeOrderServlet" method="get">
 
         <table>
         <tr>
