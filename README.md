@@ -1,12 +1,10 @@
-# PA2
-In4 124 PA2
+# PA3
+In4 124 PA3
 
 Team Members: Juan Ramirez, Weihan Wang
 
-The site opens on the store page and allows users to select a phone.
-Upon clicking on a phone, a page is dynamically created based on phone selection.
-The user can choose to return to the store, view the cart, or add the phone to the cart.
-If the user decides to add to cart, a prompt notifies the user the phone has been added
-If the user selects to return to store they are taken back to main page
-If user selects to view cart, they are shown any items that have been added to cart
-At the cart page the user is prompted for info and sent back to the home page
+about, products, store, and cart have all been updated to jsp
+servlets created for getting tax and zip
+work in junction with js file that performs string splitting and inserting into correct position
+On cart page, inputting value into zip text box will invoke on blur which calls on javascript function for the servlet, iterates through the zip or tax file to find correspodning info
+city and state are updated as well as overall price of cart depending on tax rate for state.
