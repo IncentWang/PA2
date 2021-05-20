@@ -34,7 +34,7 @@
       try
       {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + request.getParameter("model") + "'";
             ResultSet rs = statement.executeQuery(sql);

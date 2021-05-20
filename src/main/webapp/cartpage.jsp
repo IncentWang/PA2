@@ -21,7 +21,7 @@
     ResultSet rs;
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
         Statement statement = con.createStatement();
         for (String name : productNames) {
             sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + name + "'";
@@ -68,7 +68,7 @@
       <script type="text/javascript" src="js/product_info.js"></script>
       <script type="text/javascript" src="js/form_validation.js"></script>
 
-        <script type = "text/JavaScript" src = "js/getZip.js"></script>
+        <script type="text/JavaScript" src = "js/getZip.js"></script>
     </head>
     <body>
 <ul>
@@ -92,7 +92,8 @@
               <%}%>
           <br>
           <br>
-              <b> Summary: $<%=total%> </b>
+              <b id="displaySummary"> Summary: $<%=total%> </b>
+          <data value="<%=total%>" id="summary" hidden>
               <%}catch(Exception e){}%>
       </table>
 </div>
@@ -123,7 +124,7 @@
             </tr>
             <tr>
                 <td> Zipcode: </td>
-                <td> <input type = "text" id="zip" name = "zip" size = "30" required="" onblur = "getPlace(this.value)" />
+                <td> <input type = "text" id="zip" name = "zip" size = "30" required="" onblur = "getPlace(this.value);getTaxRate(this.value)" />
                 </td>
             </tr>
             <tr>

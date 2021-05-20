@@ -42,7 +42,7 @@
 
 <%  try {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
     Statement statement = con.createStatement();
     String sql = "SELECT * FROM pa2.phone_information";
     ResultSet rs = statement.executeQuery(sql);
@@ -173,5 +173,7 @@ finally {}%>
         <%}%>
     </tr>
 </table>
+
+<jsp:include page="/ratingServlet" />
 </body>
 </html>
