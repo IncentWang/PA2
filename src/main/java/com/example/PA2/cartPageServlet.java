@@ -37,7 +37,7 @@ public class cartPageServlet extends HttpServlet {
         ResultSet rs;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
             Statement statement = con.createStatement();
             for(String name: productNames){
                 sql = "SELECT * FROM pa2.phone_information WHERE phone_name=" + "'" + name + "'";

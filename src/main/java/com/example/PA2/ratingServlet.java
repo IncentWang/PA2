@@ -24,7 +24,7 @@ public class ratingServlet extends HttpServlet {
         int counter = 0;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "incent");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
             Statement statement = con.createStatement();
             String sql = "SELECT * FROM pa2.orders";
             ResultSet rs = statement.executeQuery(sql);
